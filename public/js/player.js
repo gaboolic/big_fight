@@ -23,9 +23,7 @@ function Player(name, map, x, y) {
     //console.log($this.y+" "+$this.vy);
     setTimeout(run, 50);
   }
-
-  run();
-
+  setTimeout(run, 50);
 }
 
 Player.prototype.setX = function (x) {

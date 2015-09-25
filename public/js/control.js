@@ -1,15 +1,16 @@
 (function () {
   var map = [
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
   var bulletList = new BulletList();
@@ -19,9 +20,9 @@
   myself.setColor("#ff0000")
   playerList.pushPlayer(myself);
 
-  var p1 = new Player("p1", map, 5, 5);
-  p1.setColor("#00ff00");
-  playerList.pushPlayer(p1);
+  var p2 = new Player("biubiubiu", map, 6, 6);
+  p2.setColor("#00ff00");
+  playerList.pushPlayer(p2);
 
 
   var paint = new Paint(map, playerList, bulletList);
@@ -38,10 +39,25 @@
     } else if (e.keyCode == 40) {
       myself.down();
     }
-    if (e.keyCode == 32) {
+    if (e.keyCode == 13) {//32空格 13回车
       //发射
-      var bu = new Bullet(myself,map);
+      var bu = new Bullet(myself, map);
       bulletList.pushBullet(bu);
+    }
+
+    if (e.keyCode == 65) {//a
+      p2.left();
+    } else if (e.keyCode == 68) {//d
+      p2.right();
+    } else if (e.keyCode == 87) {//w
+      p2.up();
+    } else if (e.keyCode == 83) {//s
+      p2.down();
+    }
+    if (e.keyCode == 74) {//j
+      //发射
+      var bu2 = new Bullet(p2, map);
+      bulletList.pushBullet(bu2);
     }
   };
   canvas.onkeyup = function (e) {
@@ -53,6 +69,17 @@
       myself.stop();
     } else if (e.keyCode == 40) {
       myself.stop();
+    }
+
+
+    if (e.keyCode == 65) {//a
+      p2.stop();
+    } else if (e.keyCode == 68) {//d
+      p2.stop();
+    } else if (e.keyCode == 87) {//w
+      p2.stop();
+    } else if (e.keyCode == 83) {//s
+      p2.stop();
     }
   };
 

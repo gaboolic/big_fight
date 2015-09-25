@@ -22,8 +22,8 @@ function Bullet(player, map) {
     //check map
     var expectX = $this.x + $this.direction.vx;
     var expectY = $this.y + $this.direction.vy;
-    console.log(expectX + "," + expectY);
-    console.log($this.direction.vx + "," + $this.direction.vy);
+    //console.log(expectX + "," + expectY);
+    //console.log($this.direction.vx + "," + $this.direction.vy);
     if (!(expectY >= 0 && expectY < map.length && expectX >= 0 && expectX < map[0].length)) {
       $this.die();
       return;
@@ -33,27 +33,29 @@ function Bullet(player, map) {
       $this.y += $this.direction.vy;
     } else {
       $this.die();
+      return;
     }
     //check kill player
     var i;
     for (i = 0; i < player.playerList.length; i++) {
       var p = player.playerList[i];
       if ($this.x == p.x && $this.y == p.y) {
-        console.log($this.owner.name + " kill " + p.name + "!");
-        p.die();
-        $this.die();
+        if ($this.owner != p) {
+          console.log($this.owner.name + " kill " + p.name + "!");
+          alert($this.owner.name + " kill " + p.name + "!")
+          p.die();
+          $this.die();
+        }
       }
     }
-
-
     setTimeout(run, 50);
   }
 
-  run();
+  setTimeout(run, 50);
 }
 Bullet.prototype.die = function () {
   this.isDie = true;
-  console.log("bullet die")
-  console.log(this.bulletList)
-  this.bulletList.remove(this);
+  if (this.bulletList != null) {
+    this.bulletList.remove(this);
+  }
 };
