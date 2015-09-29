@@ -42,7 +42,7 @@ function Bullet(player, map) {
       if ($this.x == p.x && $this.y == p.y) {
         if ($this.owner != p) {
           console.log($this.owner.name + " kill " + p.name + "!");
-          alert($this.owner.name + " kill " + p.name + "!")
+          //alert($this.owner.name + " kill " + p.name + "!")
           p.die();
           $this.die();
         }
